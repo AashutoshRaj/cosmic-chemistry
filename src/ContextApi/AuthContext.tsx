@@ -17,9 +17,9 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }, [])
 
 
-     const login = () => {
-        localStorage.setItem("token", token)
-        setIsAuthenticated(true)
+     const login = (token: string) => {
+        localStorage.setItem("token", token);
+        setIsAuthenticated(true);
 
     }
 
