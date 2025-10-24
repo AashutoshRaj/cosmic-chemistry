@@ -25,7 +25,7 @@ const LoginForm: React.FC = () => {
   const {setIsAuthenticated} = useAuth();
 // {isAuthenticated, setIsAuthenticated, login,logout
 
-  const handleSubmit = async (data:any) => {
+  const handleSubmit = async (data: Values) => {
 
     try {
 
@@ -70,7 +70,7 @@ const LoginForm: React.FC = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <Formik
+              <Formik<Values>
                 initialValues={{
                   email: "",
                   password: "",
@@ -126,43 +126,7 @@ const LoginForm: React.FC = () => {
                   </Button>
                 </Form>
               </Formik>
-              {/* <form className="space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label className="block text-sm mb-1 font-medium text-white">
-                  Email Address
-                </label>
-                <Input
-                  type="email"
-                  name="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  // placeholder="you@email.com"
-                  className="w-full border-0 border-b border-white rounded-none h-[50px] text-white shadow-none outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm mb-1 font-medium text-white">
-                  Password
-                </label>
-                <Input
-                  type="password"
-                  name="password"
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  // placeholder="Password"
-                  className="w-full border-0 border-b border-white rounded-none h-[50px] text-white shadow-none outline-none"
-                />
-              </div>
-
-              <Button type="submit" className="w-full m-auto bg-[#191970] h-[63px] rounded-full font-semibold text-[20px] leading-[100%] tracking-[0]">
-                  Login
-                </Button>
-            </form> */}
+             
             </CardContent>
           </Card>
         </div>

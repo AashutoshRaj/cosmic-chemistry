@@ -1,7 +1,7 @@
 import bgLogin from "../../assets/Images/image 82.png";
 import pageBg from "../../assets/Images/featBg.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Formik, Field, Form, type FormikHelpers, ErrorMessage } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Button } from "@/components/ui/button";
 import * as Yup from "yup";
@@ -16,10 +16,6 @@ interface Values {
   confirm: string;
   // date: string;
   // ErrorMessage: any;
-}
-
-interface Error {
-  ErrorMessage: string;
 }
 
 const signUpSchema = Yup.object().shape({
@@ -48,7 +44,7 @@ const SignUp: React.FC = () => {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState<boolean>(false);
 
-  const handleSubmit = async (data: any) => {
+  const handleSubmit = async (data: Values) => {
     try {
       const payload = {
         firstName: data.firstName,
