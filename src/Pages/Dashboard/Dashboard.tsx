@@ -32,18 +32,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-interface Values {
-  firstName: string;
-  email: string;
-  date_of_birth: null;
-  place: string;
-  time: number | string;
-  profile: string;
-}
-interface Error {
-  ErrorMessage: string;
-}
-
 const updateProfileSchema = Yup.object().shape({
   firstName: Yup.string()
     .min(2, "Too Short!")
@@ -134,7 +122,7 @@ export default function Page() {
       const token = localStorage.getItem("token");
       const updateAPi = "http://localhost:8000/api/user/update_user";
 
-      console.log("update APi Outputasddddddddddddddddddddddd", updateAPi);
+      // console.log("update APi Outputa", updateAPi);
 
       const file = new FormData();
       file.append("firstName", values.firstName);
@@ -170,7 +158,7 @@ export default function Page() {
     // check the file is of correct type
     if (!allowedTypes.includes(selectedFile.type)) {
       return;
-    }s
+    }
     console.log("hello");
     // check the file size is correct
     const fileSize = selectedFile.size; // Size in bytes
@@ -239,7 +227,7 @@ export default function Page() {
               validationSchema={updateProfileSchema}
               onSubmit={handleSubmits}
             >
-              {({ setFieldValue, values, errors, touched }) => (
+              {({ setFieldValue, }) => (
                 <Form className="grid auto-rows-min gap-4 md:grid-cols-6 h-full items-start w-full max-w-[992px] mx-auto">
                   <div className=" w-full bg-muted/50  rounded-xl rounded-[30px] overflow-hidden col-span-2 row-start-1 row-end-10 relative">
                     {images1 ? (

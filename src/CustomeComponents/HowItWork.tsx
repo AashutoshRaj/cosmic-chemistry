@@ -1,10 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import image1 from "../assets/Images/schedule 1.png"
 import image2 from "../assets/Images/astrology (1) 1.png"
 import image3 from "../assets/Images/chat 1.png"
 
 
-// WorkCard props interface
+// WorkCard props interfaceP
 interface WorkCardProps {
   imgSrc: string;
   title: string;

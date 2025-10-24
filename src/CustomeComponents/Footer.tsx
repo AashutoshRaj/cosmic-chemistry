@@ -11,25 +11,25 @@ const Footer = () => {
 
           <ul className="flex flex-wrap justify-center gap-8 mt-8">
                 <li>
-                    <a href="#" className="!text-white text-center flex items-center justify-center gap-2 mt-4">
+                    <Link to="/"  className="!text-white text-center flex items-center justify-center gap-2 mt-4">
                         Home                       
-                    </a>
+                    </Link>
                 </li>
                               
                  <li>
-                    <a href="#" className="!text-white text-center flex items-center justify-center gap-2 mt-4">
+                    <Link to="/" className="!text-white text-center flex items-center justify-center gap-2 mt-4">
                         Get Started                        
-                    </a>
+                    </Link>
                 </li>
                  <li>
-                    <a href="#" className="!text-white text-center flex items-center justify-center gap-2 mt-4">
+                    <Link to="/"  className="!text-white text-center flex items-center justify-center gap-2 mt-4">
                         Features                       
-                    </a>
+                    </Link>
                 </li>
                  <li>
-                    <a href="#" className="!text-white text-center flex items-center justify-center gap-2 mt-4">
+                    <Link to="/matches"  className="!text-white text-center flex items-center justify-center gap-2 mt-4">
                         Matches                       
-                    </a>
+                    </Link>
                 </li>
             </ul>  
             <ul className="flex flex-wrap justify-center gap-8 mt-16">
