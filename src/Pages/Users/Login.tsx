@@ -12,6 +12,11 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/ContextApi/AuthContext";
 
+
+import 'react-toastify/dist/ReactToastify.css';
+import {toast, ToastContainer } from 'react-toastify';
+
+
 interface Values {
   email: string;
   password: string;
@@ -36,24 +41,36 @@ const LoginForm: React.FC = () => {
       }
 
       const loginAPI = "http://localhost:8000/api/user/login";
-      const response = await axios.post(loginAPI,payload);
-
-      console.log("Check Response login API", response);
-      
-      console.log("getingUserDetails", response.data.token)
+      const response = await axios.post(loginAPI,payload);   
 
       localStorage.setItem("token", response.data.token);
 
+   // ✅ Show success toast
+       toast.success(`Welcome! ${response.data.user.firstName}`, {
+                    position: "top-right",
+                    autoClose: 3000,
+                });
+
       setIsAuthenticated(true)
-      navigate("/dashboard")
+          setTimeout(() => {
+              navigate("/dashboard")
+            }, 3000);
+    
+
+  
+
+
     } catch (error) {
       console.log("Not getting Response login API", error);
     } finally {
+
+      
     }
   };
 
   return (
     <div className=" bg-[#000000]">
+       <ToastContainer/>
       <div
         className=" min-h-screen flex items-center justify-center"
         style={{

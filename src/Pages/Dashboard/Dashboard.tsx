@@ -31,6 +31,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import messages from "@/utils/message";
 
 const updateProfileSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -73,6 +76,10 @@ export default function Page() {
     profile?: string;
   }>({});
 
+  const editHandleSubmit = () => {
+    setIsEdit(true);
+  };
+
   const places = [
     {
       name: "Solan",
@@ -96,11 +103,20 @@ export default function Page() {
         const profileResponse = await axios.get(profileApiUrl, {
           headers: {
             Authorization: `Bearer ${token}`, // send token
+
           },
         });
 
         console.log("profile Response", profileResponse.data.user);
-        setUserData(profileResponse.data.user);
+
+        localStorage.setItem("user", JSON.stringify(profileResponse.data.user));
+
+        
+
+        console.log("savedDataaaaaaaaaaaaaa", JSON.parse(localStorage.getItem('user') as string).profile )
+
+        setUserData(profileResponse.data.user); 
+        setImages1(profileResponse.data.user.profile)  
         // console.log(isUser, "sdddsdsd");
         // console.log(setUserData(profileResponse.data.user))
       } catch (error) {
@@ -121,7 +137,6 @@ export default function Page() {
     try {
       const token = localStorage.getItem("token");
       const updateAPi = "http://localhost:8000/api/user/update_user";
-
       // console.log("update APi Outputa", updateAPi);
 
       const file = new FormData();
@@ -139,6 +154,13 @@ export default function Page() {
           // "Content-Type": "multipart/form-data",
         },
       });
+
+      // ✅ Show success toast
+      toast.success(`Data Updated Successfully`, {
+        position: "top-right",
+        autoClose: 3000,
+      });
+
       console.log("get responseUpdateApi data", responseUpdateApi);
     } catch (error) {
       console.log("Not getting responseUpdateApi data", error);
@@ -185,6 +207,7 @@ export default function Page() {
 
   return (
     <SidebarProvider>
+      <ToastContainer />
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
@@ -199,11 +222,12 @@ export default function Page() {
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem className="flex items-center justify-between w-full">
                 <BreadcrumbPage className="text-4xl font-bold">
-                  Profile
+                  {/* Profile */}
+                  {messages.wentWrong}
                 </BreadcrumbPage>
                 <div className="flex gap-2">
                   {/* <Button>Save</Button> */}
-                  <Button onClick={() => setIsEdit(!isEdit)}>Edit</Button>
+                  <Button onClick={editHandleSubmit}>Edit</Button>
                 </div>
               </BreadcrumbItem>
             </BreadcrumbList>
@@ -227,7 +251,7 @@ export default function Page() {
               validationSchema={updateProfileSchema}
               onSubmit={handleSubmits}
             >
-              {({ setFieldValue, }) => (
+              {({ setFieldValue }) => (
                 <Form className="grid auto-rows-min gap-4 md:grid-cols-6 h-full items-start w-full max-w-[992px] mx-auto">
                   <div className=" w-full bg-muted/50  rounded-xl rounded-[30px] overflow-hidden col-span-2 row-start-1 row-end-10 relative">
                     {images1 ? (

@@ -18,7 +18,7 @@ const Header = () => {
         to="/"
         className="!text-white text-left flex items-center justify-start gap-2 font-bold block capitalize text-white text-4xl font-bold m-0"
       >
-        cosmic chemistry
+        Kundli
       </Link>
       <ul className="flex flex-wrap justify-end gap-8 flex-1 items-center">
         <li>

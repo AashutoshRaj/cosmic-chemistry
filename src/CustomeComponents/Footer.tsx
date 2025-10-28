@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <>
       <footer className="pt-8" style={{ backgroundImage: `url(${footerBg})`, backgroundSize: 'cover', backgroundPosition: 'center',height: '100%' }}>
-         <h4 className="capitalize text-white text-4xl text-center font-bold">cosmic chemistry</h4> 
+         <h4 className="capitalize text-white text-4xl text-center font-bold">kundli</h4> 
 
           <ul className="flex flex-wrap justify-center gap-8 mt-8">
                 <li>
