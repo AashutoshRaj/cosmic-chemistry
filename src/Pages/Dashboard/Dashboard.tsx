@@ -153,7 +153,7 @@ export default function Page() {
           authorization: `Bearer ${token}`, // send token
           // "Content-Type": "multipart/form-data",
         },
-      });
+      }); 
 
       // ✅ Show success toast
       toast.success(`Data Updated Successfully`, {
