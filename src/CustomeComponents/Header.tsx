@@ -12,6 +12,8 @@ const Header = () => {
     navigate("/");
   };
 
+  const {user} = useAuth();
+
   return (
     <div className="bg-[#210226] py-[24px] px-[133px] flex flex-row  justify-between items-center ">
       <Link
@@ -54,6 +56,9 @@ const Header = () => {
             Matches
           </Link>
         </li>
+        {user && user.role_id == 1 && <li>
+          <Link to="admin">Admin</Link>
+          </li>}
 
 
 
@@ -61,7 +66,7 @@ const Header = () => {
           <>
               <li>
               <Link
-                to="/dashboard"
+                to="/dashboard/profile"
                 className="!text-white text-center flex items-center justify-center gap-2"
               >
                 Dashboard

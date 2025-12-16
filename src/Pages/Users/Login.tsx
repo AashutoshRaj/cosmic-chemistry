@@ -14,7 +14,10 @@ import { useAuth } from "@/ContextApi/AuthContext";
 
 
 import 'react-toastify/dist/ReactToastify.css';
-import {toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+
+
+// const setTokenAndUser = setTokenAndUser();
 
 
 interface Values {
@@ -27,50 +30,55 @@ const LoginForm: React.FC = () => {
   // const [password, setPassword] = useState("");
   const navigate = useNavigate()
 
-  const {setIsAuthenticated} = useAuth();
-// {isAuthenticated, setIsAuthenticated, login,logout
+  const { setIsAuthenticated, setTokenAndUser } = useAuth();
+  // {isAuthenticated, setIsAuthenticated, login,logout
 
   const handleSubmit = async (data: Values) => {
 
     try {
 
-      const payload= {
-        email:data.email,
-        password:data.password,
+      const payload = {
+        email: data.email,
+        password: data.password,
 
       }
 
       const loginAPI = "http://localhost:8000/api/user/login";
-      const response = await axios.post(loginAPI,payload);   
+      const response = await axios.post(loginAPI, payload);
+      console.log("Login Response", response);
 
-      localStorage.setItem("token", response.data.token);
+      setTokenAndUser(response.data.user, response.data.token);
 
-   // ✅ Show success toast
-       toast.success(`Welcome! ${response.data.user.firstName}`, {
-                    position: "top-right",
-                    autoClose: 3000,
-                });
+      // localStorage.setItem("token", response.data.token);
+
+      // setTokenAndUser(response.data, response.data.token);
+
+      // ✅ Show success toast
+      toast.success(`Welcome! ${response.data.user.firstName}`, {
+        position: "top-right",
+        autoClose: 3000,
+      });
 
       setIsAuthenticated(true)
-          setTimeout(() => {
-              navigate("/dashboard")
-            }, 3000);
-    
+      setTimeout(() => {
+        navigate("/dashboard/profile")
+      }, 3000);
 
-  
+
+
 
 
     } catch (error) {
       console.log("Not getting Response login API", error);
     } finally {
 
-      
+
     }
   };
 
   return (
     <div className=" bg-[#000000]">
-       <ToastContainer/>
+      <ToastContainer />
       <div
         className=" min-h-screen flex items-center justify-center"
         style={{
@@ -123,7 +131,7 @@ const LoginForm: React.FC = () => {
                       Password
                     </label>
                     <Field
-                    type="password"
+                      type="password"
                       id="password"
                       name="password"
                       //  placeholder="First Name"
@@ -143,7 +151,7 @@ const LoginForm: React.FC = () => {
                   </Button>
                 </Form>
               </Formik>
-             
+
             </CardContent>
           </Card>
         </div>

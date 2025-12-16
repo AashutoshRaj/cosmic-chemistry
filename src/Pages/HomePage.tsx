@@ -7,9 +7,15 @@ import MembershipTiers from "@/CustomeComponents/MembershipTiers"
 import WhyDifferent from "@/CustomeComponents/WhyDifferent"
 
 
+
 const HomePage = () => {
+
+
+
   return (
     <>
+
+     
         
         <BannerHero/>
         <AboutUs/>

@@ -51,7 +51,6 @@ function SelectTrigger({
 function SelectContent({
   className,
   children,
-
   position = "popper",
   align = "center",
   ...props
